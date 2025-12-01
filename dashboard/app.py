@@ -1,9 +1,10 @@
+import sys
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import pandas as pd
 import streamlit as st
-from ai_helper import ask_ai_about_data
-
-
+from dashboard.ai_helper import ask_ai_about_data
 DATA_PATH = os.path.join("data", "processed", "spotify_clean.csv")
 
 @st.cache_data
@@ -41,9 +42,7 @@ def page_feature_distributions(df):
         ["danceability", "energy", "valence", "tempo", "loudness", "duration_min"]
     )
 
-    # Plot using matplotlib
     import matplotlib.pyplot as plt
-
     fig, ax = plt.subplots(figsize=(8, 4))
     ax.hist(df[feature], bins=30)
     ax.set_title(f"Distribution of {feature}")
@@ -51,7 +50,6 @@ def page_feature_distributions(df):
     ax.set_ylabel("Count")
 
     st.pyplot(fig)
-
 
 
 def page_song_explorer(df):
@@ -76,10 +74,13 @@ def page_song_explorer(df):
 def page_ai_assistant(df):
     st.title("AI Assistant")
     st.write("Ask questions about the dataset!")
+
     question = st.text_input("Enter your question here:")
+
     if st.button("Ask AI"):
         if question:
-            response = ask_ai_about_data(df, question)
+            
+            response = ask_ai_about_data(question, df)
             st.write("**AI Response:**")
             st.write(response)
         else:
@@ -92,7 +93,7 @@ def main():
     st.sidebar.title("Navigation")
     page = st.sidebar.radio(
         "Go to:",
-        ["Overview", "Genre Analysis", "Feature Distributions", "Song Explorer"],
+        ["Overview", "Genre Analysis", "Feature Distributions", "Song Explorer", "AI Assistant"],
     )
 
     if page == "Overview":
@@ -103,6 +104,8 @@ def main():
         page_feature_distributions(df)
     elif page == "Song Explorer":
         page_song_explorer(df)
+    elif page == "AI Assistant":
+        page_ai_assistant(df)
 
 
 if __name__ == "__main__":
