@@ -1,3 +1,5 @@
+
+
 MusicInsights: Spotify ETL, Analytics, and AI
 
 This project is a small end-to-end data pipeline and analysis tool built around a public Spotify dataset. I wanted a project that shows I can take raw data, clean it up, explore it, and publish it through an interactive dashboard. The goal is to demonstrate practical data analysis skills without making anything overly complex.
