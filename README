@@ -1,41 +1,56 @@
-Data Pipeline & Analytics Dashboard
+MusicInsights: Spotify ETL, Analytics, and AI
 
-Hello to whoever reads this. This is a project I have been working on in order to help me with learning data pipelines and dashboards.
-I’m still pretty new at this, but going through this project has taught me a fair amount. I appreciate you for taking the time to look at it.
+This project is a small end-to-end data pipeline and analysis tool built around a public Spotify dataset. I wanted a project that shows I can take raw data, clean it up, explore it, and publish it through an interactive dashboard. The goal is to demonstrate practical data analysis skills without making anything overly complex.
 
-What this project does
-Generates fake e-commerce data for users, products, and orders
-Loads that data into a SQLite database using a simple ETL pipeline
-Calculates basic analytics like total revenue, average order value, total orders, and unique users
-Shows a dashboard with KPIs and charts using Streamlit
-Basically, I can run everything and see a dashboard with some graphs and numbers.
+The project includes an ETL script that loads and cleans the raw Spotify tracks CSV, an exploratory data analysis notebook, and a dashboard built with Streamlit. The dashboard lets you browse the dataset, look at genre trends, view distributions of audio features, and explore songs through basic filtering. I also added a lightweight AI assistant that uses a short summary of the dataset to answer simple questions about the data.
 
-What all was used in this project.
+Project Structure
 
-Python 3.13
-pandas
-SQLAlchemy
-Streamlit
-Faker (for generating fake users and products)
-SQLite (just a simple file database)
+The ETL pipeline lives in the etl folder.
+It reads the raw dataset, cleans the necessary columns, removes duplicates, adds a few simple engineered features like duration in minutes and popularity buckets, and outputs a processed CSV.
 
-How to run it
+The EDA notebook is in analysis/, where I looked at things like genre distribution, average popularity by genre, and correlations between audio features.
 
-First, generate the raw data using "py src/data_gen.py"
-Run the ETL to load the data into the database with "py src/etl.py"
-Check the analytics with "py src/analytics.py"
-Run the dashboard with "streamlit run app.py"
+The dashboard code is inside the dashboard folder.
+It includes pages for:
+
+a general overview of the dataset,
+
+average popularity by genre,
+
+distributions of selected audio features,
+
+and a simple song explorer with filtering.
+
+The AI helper file provides a small wrapper around the OpenAI API. It doesn't send the entire dataset to the API; instead it uses a compact summary so each request stays lightweight. It also includes basic error handling so the dashboard doesn't break if the key is missing or out of quota.
+
+Running the Project
+
+To run everything locally, clone the repository and create a virtual environment:
+python -m venv venv
+
+Install dependencies:
+pip install -r requirements.txt
+
+run the pipeline
+python -m etl.etl_pipeline
+
+Add a .env for your API key for OpenAI
+OPENAI_API_KEY=your_key_here
+
+run the app
+streamlit run dashboard/app.py
 
 
-What was learned and what gave me a headache?
-The python pathing and imports I had a decent bit of issues with due to a naming error and misplacing my
-app.py file into a dashboard folder instead of having it in the root.
-I learned about Faker and how i could use it instead of needing to actually find a database of data to use for the project.
-I learned a bit more about ETL. Hopefully a few more projects like this will help me to establish a solid
-foundation on ETL to where i wont need to look up so much to finish a project.
+Notes on the AI Component
 
+The AI assistant uses a small summary of the dataset instead of the full data, so it’s mainly for basic, high-level questions. This keeps requests cheap and avoids running into quota or rate-limit problems.
 
-Final thoughts:
+Possible Future Additions
 
-I know this project is not perfect, but I am a beginner and I am trying my best to get a solid foundation.
-I will always strive to become good at whatever i set my mind to. So i will do the same with software engineering.
+Later on, I may add things like simple scatter plots, an artist summary page, or a basic popularity prediction model. I kept this version small so it stays clear and easy to maintain.
+
+What This Project Demonstrates
+
+This project shows that I can clean and prepare data, run basic EDA, and build a simple dashboard. It also includes a small AI feature with error handling to make the app more user-friendly.
+
