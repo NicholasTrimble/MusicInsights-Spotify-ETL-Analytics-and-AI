@@ -1,0 +1,41 @@
+Data Pipeline & Analytics Dashboard
+
+Hello to whoever reads this. This is a project I have been working on in order to help me with learning data pipelines and dashboards.
+I’m still pretty new at this, but going through this project has taught me a fair amount. I appreciate you for taking the time to look at it.
+
+What this project does
+Generates fake e-commerce data for users, products, and orders
+Loads that data into a SQLite database using a simple ETL pipeline
+Calculates basic analytics like total revenue, average order value, total orders, and unique users
+Shows a dashboard with KPIs and charts using Streamlit
+Basically, I can run everything and see a dashboard with some graphs and numbers.
+
+What all was used in this project.
+
+Python 3.13
+pandas
+SQLAlchemy
+Streamlit
+Faker (for generating fake users and products)
+SQLite (just a simple file database)
+
+How to run it
+
+First, generate the raw data using "py src/data_gen.py"
+Run the ETL to load the data into the database with "py src/etl.py"
+Check the analytics with "py src/analytics.py"
+Run the dashboard with "streamlit run app.py"
+
+
+What was learned and what gave me a headache?
+The python pathing and imports I had a decent bit of issues with due to a naming error and misplacing my
+app.py file into a dashboard folder instead of having it in the root.
+I learned about Faker and how i could use it instead of needing to actually find a database of data to use for the project.
+I learned a bit more about ETL. Hopefully a few more projects like this will help me to establish a solid
+foundation on ETL to where i wont need to look up so much to finish a project.
+
+
+Final thoughts:
+
+I know this project is not perfect, but I am a beginner and I am trying my best to get a solid foundation.
+I will always strive to become good at whatever i set my mind to. So i will do the same with software engineering.

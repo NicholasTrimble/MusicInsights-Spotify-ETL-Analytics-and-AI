@@ -1,0 +1,25 @@
+# Ignore environment variables
+.env
+
+# Python virtual environment
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Streamlit cache
+.streamlit/
+
+# Mac / Windows system files
+.DS_Store
+Thumbs.db
+
+# Ignore raw data if desired
+data/raw/
